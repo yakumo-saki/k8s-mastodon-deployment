@@ -51,7 +51,7 @@ env:
 初期値は、https://hub.docker.com/r/tootsuite/mastodon/ を指定してあります。  
 バージョンを確認の上、必要であれば変更して下さい。
 
-Glitch Edition の yakumosaki/glitch-soc を使うことも可能です。
+Glitch Edition の yakumosaki/glitch-soc を使うことも可能です。（宣伝）
 
 ### env.production
 
