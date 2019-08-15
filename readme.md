@@ -47,9 +47,11 @@ env:
 
 ### dockerコンテナイメージとタグ
 
-`sidekiq-deployment.yaml` `streaming-deployment.yaml` `web-deployment.yaml` の3ファイルにdockerコンテナのイメージ名が含まれています。
-初期値は、https://hub.docker.com/r/tootsuite/mastodon/ を指定してあります。
+`sidekiq-deployment.yaml` `streaming-deployment.yaml` `web-deployment.yaml` の3ファイルにdockerコンテナのイメージ名が含まれています。  
+初期値は、https://hub.docker.com/r/tootsuite/mastodon/ を指定してあります。  
 バージョンを確認の上、必要であれば変更して下さい。
+
+Glitch Edition の yakumosaki/glitch-soc を使うことも可能です。
 
 ### env.production
 
