@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    tier: sidekiq
+  name: sidekiq
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        tier: sidekiq
+    spec:
+      containers:
+        - name: sidekiq
+          image: tootsuite/mastodon:v2.9.3
+          resources:
+            requests:
+              memory: "768M"
+          args:
+            - bundle
+            - exec
+            - sidekiq
+            - -c
+            - "20"
+          envFrom:
+            - configMapRef:
+                name: config
+          volumeMounts:
+          - mountPath: /mastodon/public/system
+            name: web-sidekiq
+      volumes:
+      - name: web-sidekiq
+        persistentVolumeClaim:
+          claimName: web-sidekiq-pvc

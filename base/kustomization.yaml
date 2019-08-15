@@ -1,0 +1,12 @@
+resources:
+  - db-service.yaml
+  - db-pvc.yaml
+  - db-statefulset.yaml
+  - web-sidekiq-pvc.yaml
+  - redis-service.yaml
+  - redis-pvc.yaml
+  - redis-deployment.yaml
+  - web-service.yaml
+  - web-deployment.yaml
+  - streaming-service.yaml
+  - streaming-deployment.yaml

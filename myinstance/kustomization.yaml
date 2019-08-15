@@ -1,0 +1,10 @@
+namePrefix: yourinstance-
+commonLabels:
+  app: yourinstance
+resources:
+  - ../base
+configMapGenerator:
+  - name: config
+    env: env.production
+    files:
+    literals:

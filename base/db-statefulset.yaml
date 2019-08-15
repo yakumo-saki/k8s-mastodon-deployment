@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db
+spec:
+  selector:
+    matchLabels:
+      tier: db
+  serviceName: db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        tier: db
+    spec:
+      terminationGracePeriodSeconds: 60
+      containers:
+        - name: db
+          image: postgres:11
+          resources:
+            requests:
+              memory: "500M"
+          env:
+            - name: POSTGRES_INITDB_ARGS
+              value: --encoding=UTF-8
+            - name: POSTGRES_PASSWORD
+              value: root
+            - name: POSTGRES_USER
+              value: root
+          livenessProbe:
+            exec:
+              command:
+              - pg_isready
+              - -U
+              - root
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: db-data
+      volumes:
+        - name: db-data
+          persistentVolumeClaim:
+            claimName: db-pvc

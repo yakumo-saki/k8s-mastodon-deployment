@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+  labels:
+    tier: streaming
+  name: streaming
+spec:
+  type: LoadBalancer
+  ports:
+  - name: "streaming"
+    port: 4000
+    targetPort: 4000
+  selector:
+    tier: streaming

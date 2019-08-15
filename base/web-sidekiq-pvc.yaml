@@ -1,0 +1,13 @@
+# /public/system. Web と sidekiqで共有されているが特に使用されていない感じ
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: null
+  labels:
+  name: web-sidekiq-pvc
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi

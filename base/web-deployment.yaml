@@ -1,0 +1,47 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  annotations:
+  labels:
+    tier: web
+  name: web
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        tier: web
+    spec:
+      containers:
+      - name: web
+				image: tootsuite/mastodon:v2.9.3
+        envFrom:
+          - configMapRef:
+              name: config
+        args:
+          - bash
+          - -c
+          - rm -f /mastodon/tmp/pids/server.pid; bundle exec rails s -p 3000 -b '0.0.0.0'
+        resources:
+          requests:
+            memory: "512M"
+        ports:
+          - containerPort: 3000
+        readinessProbe:
+          initialDelaySeconds: 60
+          periodSeconds: 30
+          httpGet:
+            port: 3000
+            path: /api/v1/instance
+            httpHeaders:
+              - name: x-forwarded-proto
+                value: https
+        volumeMounts:
+          - mountPath: /mastodon/public/system
+            name: web-sidekiq
+      volumes:
+        - name: web-sidekiq
+          persistentVolumeClaim:
+            claimName: web-sidekiq-pvc
