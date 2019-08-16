@@ -17,6 +17,7 @@ spec:
       containers:
         - name: db
           image: postgres:11
+          #command: ["tail", "-f", "/dev/null"]
           resources:
             requests:
               memory: "500M"

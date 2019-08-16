@@ -10,3 +10,4 @@ resources:
   - web-deployment.yaml
   - streaming-service.yaml
   - streaming-deployment.yaml
+  - sidekiq-deployment.yaml

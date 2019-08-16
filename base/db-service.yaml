@@ -6,10 +6,10 @@ metadata:
     tier: db
   name: db
 spec:
+  clusterIP: None
   ports:
   - name: "postgresql"
     port: 5432
     targetPort: 5432
   selector:
     tier: db
-
